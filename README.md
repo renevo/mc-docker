@@ -24,7 +24,7 @@ docker run --name age-of-engineering -it --rm -p 25565:25565 -e EULA=TRUE -e MEM
 ```
 
 Server Properties
-```bash
+```conf
 #Minecraft server properties
 #Wed Nov 22 01:13:53 GMT 2017
 generator-settings=
@@ -59,4 +59,29 @@ spawn-monsters=true
 view-distance=10
 generate-structures=true
 motd=RenEvo Age of Engineering!
+```
+
+UUID from [https://minecraft-techworld.com/uuid-lookup-tool](https://minecraft-techworld.com/uuid-lookup-tool)
+
+Ops.json
+
+```json
+[
+  {
+    "uuid": "118bbaaf-2d9d-4fdc-b03d-ec88a8fd812d",
+    "name": "RenEvo",
+    "level": 4
+  }
+]
+```
+
+whitelist.json
+
+```json
+[
+  {
+    "uuid": "118bbaaf-2d9d-4fdc-b03d-ec88a8fd812d",
+    "name": "RenEvo"
+  }
+]
 ```

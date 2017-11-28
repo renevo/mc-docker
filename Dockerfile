@@ -29,7 +29,9 @@ ENV MOTD="Curse Forge Mod Pack" \
 WORKDIR /home/minecraft
 
 # Download Mod Pack Manifest
-RUN /home/minecraft/download.sh
+RUN chmod +x ./download.sh \
+    && chmod +x ./run.sh \
+    && ./download.sh
 
 VOLUME ["/home/minecraft/backups", "/home/minecraft/world"]
 

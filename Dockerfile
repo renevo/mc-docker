@@ -17,7 +17,7 @@ RUN apk add -U \
     && mkdir -p /home/minecraft/pack/${CURSE_PROJECT}
 
 RUN pip install mcstatus
-HEALTHCHECK CMD mcstatus localhost ping
+#HEALTHCHECK --interval=60s --timeout=60s --retries=10 CMD mcstatus localhost ping
 
 COPY ./download.sh /home/minecraft/download.sh
 COPY ./run.sh /home/minecraft/run.sh

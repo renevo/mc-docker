@@ -2,7 +2,7 @@
 
 set -e
 
-wget https://minecraft.curseforge.com/projects/${CURSE_PROJECT}/files/${CURSE_PROJECT_VERSION} -O /home/minecraft/pack/${CURSE_PROJECT}.zip --no-check-certificate
+wget -nv https://minecraft.curseforge.com/projects/${CURSE_PROJECT}/files/${CURSE_PROJECT_VERSION} -O /home/minecraft/pack/${CURSE_PROJECT}.zip --no-check-certificate
 
 unzip /home/minecraft/pack/${CURSE_PROJECT}.zip -d /home/minecraft/pack/${CURSE_PROJECT}/
 cp -r /home/minecraft/pack/${CURSE_PROJECT}/overrides/* /home/minecraft/
@@ -15,7 +15,7 @@ MOD_NAME=$(echo ${MANIFEST} | jq -r '.name')
 MOD_VERSION=$(echo ${MANIFEST} | jq -r '.version')
 MOD_AUTHOR=$(echo ${MANIFEST} | jq -r '.author')
 
-wget http://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar -O /home/minecraft/forge-installer.jar
+wget -nv http://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar -O /home/minecraft/forge-installer.jar
 
 FILES=$(echo ${MANIFEST} | jq -r '.files[] | "/projects/" + (.projectID|tostring) + "/files/" + (.fileID|tostring) + "/download"')
 
@@ -25,8 +25,8 @@ FAILS=""
 
 for FILE in ${FILES[@]}
 do
-    wget https://minecraft.curseforge.com${FILE} --content-disposition -P /home/minecraft/mods/ --no-check-certificate || WGET_EXIT=$? && true
-    if [ "${WGET_EXIT}" -gt "0" ]; then
+    wget -nv https://minecraft.curseforge.com${FILE} --content-disposition -P /home/minecraft/mods/ --no-check-certificate || WGET_EXIT=$? && true
+    if [[ "${WGET_EXIT}" -gt "0" ]]; then
         FAILS="${FAILS}https://minecraft.curseforge.com${FILE}\n"
     fi
     WGET_EXIT=0
